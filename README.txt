@@ -23,4 +23,4 @@ Requirements:
  ./snow-run.sh -
  (reads from STDIN; use Ctrl+D to submit the script)
 
- Tested with ServiceNow London release
+ Tested with ServiceNow London release, however, it's just a proof of concept.
