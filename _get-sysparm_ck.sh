@@ -1,0 +1,1 @@
+curl https://$snow_instance/login.do --cookie-jar $snow_cookie | ./_grep-sysparm_ck.sh
