@@ -4,7 +4,7 @@ Version 0.0.0
 
 Requirements:
  - curl, bash
- - running ServiceNow instance
+ - a running ServiceNow instance
  - an account in ServiceNow that is capable of running background scripts
 
  How to:
@@ -16,11 +16,11 @@ Requirements:
 
  ./login.sh
 
- (prepare username and password)
+ (prepare your username and password)
 
- ./run-script.sh example.js
+ ./snow-run.sh example.js
 
- ./run-script.sh -
+ ./snow-run.sh -
  (reads from STDIN; use Ctrl+D to submit the script)
 
  Tested with ServiceNow London release
