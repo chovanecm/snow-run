@@ -8,7 +8,6 @@ my_dir=$(dirname $0)
 source $my_dir/env.sh
 
 SCRIPT_FILE=$1
-echo "curl https://$snow_instance/sys.scripts.do -b $SNOW_COOKIE_FILE --cookie-jar $SNOW_COOKIE_FILE" > a.txt
 token=$(curl https://$snow_instance/sys.scripts.do -b $SNOW_COOKIE_FILE --cookie-jar $SNOW_COOKIE_FILE -s | $my_dir/_grep-sysparm_ck.sh)
 if [[ -z $token ]]
 then
