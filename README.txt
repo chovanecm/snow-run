@@ -14,9 +14,14 @@ Requirements:
 
  Log in:
 
- ./login.sh
+ ./snow-login.sh
 
  (prepare your username and password)
+
+If your instance requires the security_admin role to run background scripts, run:
+ ./snow-elevate.sh
+
+Running scripts:
 
  ./snow-run.sh example.js
 
@@ -24,3 +29,5 @@ Requirements:
  (reads from STDIN; use Ctrl+D to submit the script)
 
  Tested with ServiceNow London release, however, it's just a proof of concept.
+
+ ./snow-info.sh displays information about current settings and the temporary directory used to store cookies.
