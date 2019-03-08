@@ -53,4 +53,4 @@ Additional scripts:
   snow-exec.sh --help property-search
     Displays help for property-search 
   
-  *** Scripts that have an corresponding snow-SCRIPT_NAME.sh helper script should NOT be run directly ***
+  *** Scripts that have an corresponding snow-SCRIPT_NAME.sh helper script are not intended to be run with snow-exec.sh ***
