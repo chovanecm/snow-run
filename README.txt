@@ -35,3 +35,5 @@ Additional scripts:
  
  snow-scriptinclude-search.sh SCRIPT_NAME
     Search for script includes containing SCRIPT_NAME in their name
+ snow-table-search.sh [-l] EXPRESSION
+    Search for table name
