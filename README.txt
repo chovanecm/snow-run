@@ -37,3 +37,5 @@ Additional scripts:
     Search for script includes containing SCRIPT_NAME in their name
  snow-table-search.sh [-l] EXPRESSION
     Search for table name
+snow-table-fields.sh TABLE_NAME
+    Display fields defined on a given table (including inherited fields)
