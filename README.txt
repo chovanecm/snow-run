@@ -34,8 +34,14 @@ Additional scripts:
  ./snow-info.sh displays information about current settings and the temporary directory used to store cookies.
  
  snow-scriptinclude-search.sh SCRIPT_NAME
-    Search for script includes containing SCRIPT_NAME in their name
+   Search for script includes containing SCRIPT_NAME in their name
+ snow-script-inspect.sh EXPRESSION
+   Displays overview of an object returned by the expression, e.g. its type, own keys and prototype keys.
+   Useful for inspecting script includes
+ snow-eval.sh EXPRESSION
+   Evaluates expression and prints the output. Note: Don't forget to properly escape strings for Bash. (e.g. snow-eval.sh '"Hello"' or snow-eval.sh \"Hello\")
  snow-table-search.sh [-l] EXPRESSION
     Search for table name
-snow-table-fields.sh TABLE_NAME
+ snow-table-fields.sh TABLE_NAME
     Display fields defined on a given table (including inherited fields)
+ 
