@@ -47,8 +47,10 @@ Additional scripts:
  snow-table-fields.sh TABLE_NAME
     Display fields defined on a given table (including inherited fields)
  
- Any script from the "js" folder can be run without writing the extension, e.g.
+ Any script from the "js" folder can be IN THEORY run without writing the extension, e.g.
   snow-exec.sh property-search EXPRESSION
     Displays system properties containing EXPRESSION in their name
   snow-exec.sh --help property-search
     Displays help for property-search 
+  
+  *** Scripts that have an corresponding snow-SCRIPT_NAME.sh helper script should NOT be run directly ***
