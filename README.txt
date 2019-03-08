@@ -35,11 +35,13 @@ Additional scripts:
  
  snow-scriptinclude-search.sh SCRIPT_NAME
    Search for script includes containing SCRIPT_NAME in their name
- snow-script-inspect.sh EXPRESSION
+ snow-inspect.sh EXPRESSION
    Displays overview of an object returned by the expression, e.g. its type, own keys and prototype keys.
-   Useful for inspecting script includes
+   Useful for inspecting script includes.
+   USE WITH CAUTION! Especially if the expression has side effects.
  snow-eval.sh EXPRESSION
    Evaluates expression and prints the output. Note: Don't forget to properly escape strings for Bash. (e.g. snow-eval.sh '"Hello"' or snow-eval.sh \"Hello\")
+   USE WITH CAUTION! Especially if the expression has side effects.
  snow-table-search.sh [-l] EXPRESSION
     Search for table name
  snow-table-fields.sh TABLE_NAME

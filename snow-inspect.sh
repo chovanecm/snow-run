@@ -1,6 +1,7 @@
 display_usage() { 
 	echo "Inspect given script include." 
 	echo -e "\nUsage:\n$0 SCRIPT_INCLUDE_NAME\n"
+    echo -e "Example:\n$0 GlideRecordUtil\n"
 } 
 
 # if less than one arguments supplied, display usage 
@@ -10,9 +11,10 @@ then
     exit 1
 fi
 
+my_dir=$(dirname $0)
+
 name=$1
 
-my_dir=$(dirname $0)
 
 script="
 var x = $name;
