@@ -40,5 +40,6 @@ function get_script {
     echo -e "$script\n\$exec($args)"
 }
 function run_script {
+    # Execute script file using arguments given
     get_script "$@" | $SNOW_BIN_DIR/snow-run.sh -
 }
