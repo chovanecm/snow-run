@@ -3,21 +3,14 @@ display_usage() {
 	echo -e "\nUsage:\n$0 EXPRESSION\n"
     echo -e "Example:\n$0 1+1\n"
 } 
+my_dir=$(dirname $0)
+source $my_dir/../include/env.sh
 
-# if less than one arguments supplied, display usage 
-if [[  $# -lt 1 ]]
-then 
-    display_usage
-    exit 1
-fi
+x=$# check_arguments 1
 
 expression=$1
 
-my_dir=$(dirname $0)
 
-script="
-var x = $expression;
-gs.print(x);
-"
+script=$(cat $SNOW_JS_DIR/eval.js)
 
-echo $script | $my_dir/snow-run.sh -
+echo -e "$script\n\$exec($expression)" | $my_dir/snow-run.sh -
