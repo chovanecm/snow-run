@@ -1,11 +1,9 @@
-if [[ -z ${snow_instance} ]];
-then
-    echo Set snow_instance ENV variable to something like dev123.service-now.com first! >&2
-    exit
-fi
-
+#!/bin/bash
 my_dir=$(dirname $0)
-source $my_dir/env.sh
+source $my_dir/../include/env.sh
+
+ensure_instance_set
+
 
 token=$(curl -b $SNOW_COOKIE_FILE https://$snow_instance/navpage.do -s | grep -oP "g_ck = '\K\w+")
 if [[ -z $token ]]
