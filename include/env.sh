@@ -26,8 +26,10 @@ function check_arguments() {
 }
 
 function tabularize {
-    column -t -s $'\t'
+    max_len=$(tput cols)
+    column -t -s $'\t' | cut -c -$max_len
 }
+
 
 function join_by { local IFS="$1"; shift; echo "$*"; }
 
@@ -36,14 +38,30 @@ function get_script {
     shift
     args="$@"
     args=$(join_by , $args)
+
     echo_function="
     function \$echo() {
         var \$arg = arguments;
-        gs.print(Object.keys(\$arg).map(function (key) {return \$arg[key];}).join('\t'));
+        switch (arguments.length) {
+            case 0:
+                gs.print("");
+                break;
+            case 1:
+                gs.print(arguments['0']);
+                break;
+            default:
+                gs.print(Object.keys(\$arg).map(function (key) {return \$arg[key];}).join('\t').replace('\\\r', '').replace('\\\n', ' '));
+        }
+        
     }
     "
     script=$(cat $SNOW_JS_DIR/$script_name)
-    echo -e "$echo_function\n$script\n\$exec($args)"
+    if [[ -z $show_script_help ]]
+    then
+        echo -e "$echo_function\n$script\n\$exec($args)"
+    else
+        echo -e "$echo_function\n$script\n\$help()"
+    fi
 }
 function run_script {
     # Execute script file using arguments given
