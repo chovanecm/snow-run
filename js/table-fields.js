@@ -3,6 +3,7 @@ function $exec(table) {
     gr.initialize();
     for (var i = 0; i < gr.getFields().size(); i++) {
         var ed = gr.getFields().get(i).getED();
-        gs.print(ed + "\t" + ed.getLabel() + "\t" + ed.getInternalType());
+        //gs.print(ed + "\t" + ed.getLabel() + "\t" + ed.getInternalType());
+        $echo(ed, ed.getLabel(), ed.getInternalType())
     }
 }

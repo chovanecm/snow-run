@@ -3,6 +3,6 @@ function $exec(field, value) {
     gr.addEncodedQuery(field + "LIKE" + value);
     gr.query();
     while (gr.next()) {
-        gs.print(gr.name + "\t" + String(gr.label).substr(0, 60))
+        $echo(gr.name, String(gr.label).substr(0, 60))
     }
 }

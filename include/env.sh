@@ -36,8 +36,14 @@ function get_script {
     shift
     args="$@"
     args=$(join_by , $args)
+    echo_function="
+    function \$echo() {
+        var \$arg = arguments;
+        gs.print(Object.keys(\$arg).map(function (key) {return \$arg[key];}).join('\t'));
+    }
+    "
     script=$(cat $SNOW_JS_DIR/$script_name)
-    echo -e "$script\n\$exec($args)"
+    echo -e "$echo_function\n$script\n\$exec($args)"
 }
 function run_script {
     # Execute script file using arguments given

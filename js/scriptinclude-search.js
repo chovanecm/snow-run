@@ -3,5 +3,5 @@ function $exec(name, operator) {
     gr.addEncodedQuery("name" + operator + name);
     gr.query();
     while (gr.next())
-        gs.print(gr.name + "\t" + String(gr.description).substr(0, 60))
+        $echo(gr.name, String(gr.description).substr(0, 60))
 }
