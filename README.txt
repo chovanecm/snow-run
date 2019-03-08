@@ -30,4 +30,8 @@ Running scripts:
 
  Tested with ServiceNow London release, however, it's just a proof of concept.
 
+Additional scripts:
  ./snow-info.sh displays information about current settings and the temporary directory used to store cookies.
+ 
+ snow-scriptinclude-search.sh SCRIPT_NAME
+    Search for script includes containing SCRIPT_NAME in their name
