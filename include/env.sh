@@ -44,17 +44,19 @@ function get_script {
                 gs.print(arguments['0']);
                 break;
             default:
-                gs.print(Object.keys(\$arg).map(function (key) {return \$arg[key];}).join('\t').replace('\\\r', '').replace('\\\n', ' '));
+                gs.print(Object.keys(\$arg).map(function (key) {return \$arg[key];}).join('\t').replace('\r', '').replace('\n', ' '));
         }
         
     }
     "
-    script=$(cat $SNOW_JS_DIR/$script_name)
+    script=$(< $SNOW_JS_DIR/$script_name)
+    echo "$script"
+    echo "$echo_function"
     if [[ -z $show_script_help ]]
     then
-        echo -e "$echo_function\n$script\n\$exec($args)"
+        echo "\$exec($args)"
     else
-        echo -e "$echo_function\n$script\n\$help()"
+        echo "\$help()"
     fi
 }
 function run_script {

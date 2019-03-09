@@ -80,9 +80,14 @@ case $command in
         ;;
 
     *)
+        # is it a script?
+        if [[ -e $my_dir/../js/$command.js ]]
+        then
+            exec $0 exec "$command" "$@"
+        fi
         if [[ -n $SNOW_AUTOCOMPLETE ]]
         then
-            echo "login info elevate eval exec inspect run scriptinclude table"
+            echo "login info elevate eval exec inspect run scriptinclude table $(cd $my_dir/../js; ls *.js | sed 's/\.js//g')"
             exit 1
         fi
         echo "Available options: $(SNOW_AUTOCOMPLETE=1 $0)"
