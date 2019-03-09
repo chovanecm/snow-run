@@ -1,12 +1,13 @@
 # Execute script in JS directory with arguments
 
-if [[ $1 == "--help" ]]
+script_name=$1
+shift
+
+if [[ $1 == "--help" ]] || [[ $1 == "-h" ]]
 then
     show_script_help=1
     shift
 fi
-script_name=$1
-shift
 
 # We need env variables beforehand
 my_dir=$(dirname $0)
