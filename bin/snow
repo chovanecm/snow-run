@@ -8,7 +8,7 @@ function handle_scriptinclude {
     shift
     case $command in
         search)
-            exec $my_dir/snow-scriptinclude-search.sh "$@"
+            exec $my_dir/../include/snow-scriptinclude-search.sh "$@"
             ;;
         *)
             if [[ -n $SNOW_AUTOCOMPLETE ]]
@@ -27,10 +27,10 @@ function handle_table {
     shift
     case $command in
         search)
-            exec $my_dir/snow-table-search.sh "$@"
+            exec $my_dir/../include/snow-table-search.sh "$@"
             ;;
         fields)
-            exec $my_dir/snow-table-fields.sh "$@"
+            exec $my_dir/../include/snow-table-fields.sh "$@"
             ;;
         *)
             if [[ -n $SNOW_AUTOCOMPLETE ]]
@@ -50,25 +50,25 @@ shift
 
 case $command in
     login)
-        exec $my_dir/snow-login.sh
+        exec $my_dir/../include/snow-login.sh
         ;;
     info)
-        exec $my_dir/snow-info.sh
+        exec $my_dir/../include/snow-info.sh
         ;;
     elevate)
-        exec $my_dir/snow-elevate.sh
+        exec $my_dir/../include/snow-elevate.sh
         ;;
     eval)
-        exec $my_dir/snow-eval.sh "$@"
+        exec $my_dir/../include/snow-eval.sh "$@"
         ;;
-    exec)
-        exec $my_dir/snow-exec.sh "$@"
+    e|exec)
+        exec $my_dir/../include/snow-exec.sh "$@"
         ;;
     inspect)
-        exec $my_dir/snow-inspect.sh "$@"
+        exec $my_dir/../include/snow-inspect.sh "$@"
         ;;
     run)
-        exec $my_dir/snow-run.sh "$@"
+        exec $my_dir/../include/snow-run.sh "$@"
         ;;
     scriptinclude)
         handle_scriptinclude "$@"

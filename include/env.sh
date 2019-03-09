@@ -59,7 +59,7 @@ function get_script {
 }
 function run_script {
     # Execute script file using arguments given
-    get_script "$@" | $SNOW_BIN_DIR/snow-run.sh -
+    get_script "$@" | $SNOW_INCLUDE_DIR/snow-run.sh -
 }
 
 
