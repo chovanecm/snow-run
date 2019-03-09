@@ -103,7 +103,7 @@ CMDBItem                     Class for Configuration Item helper functions
 ### Inspecting a script include or another object
 
 ```shell
-snow inspect snow inspect SCRIPT_INCLUDE_OR_EXPRESSSION
+snow inspect SCRIPT_INCLUDE_OR_EXPRESSSION
 ```
 
 Example:
