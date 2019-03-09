@@ -41,7 +41,8 @@ function get_script {
                 gs.print("");
                 break;
             case 1:
-                gs.print(arguments['0']);
+                // *** Script: is the prefix ServiceNow normally puts at the beginning of each line. Lines that don't begin with this sequence are treated as error output.
+                gs.print(arguments['0'].replace('\n', '\n*** Script: '));
                 break;
             default:
                 gs.print(Object.keys(\$arg).map(function (key) {return \$arg[key];}).join('\t').replace('\r', '').replace('\n', ' '));
