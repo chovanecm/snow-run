@@ -18,4 +18,4 @@ fi
 
 x=$# check_arguments 1
 name=$1
-run_script table-search.js \"$search_by\" \"$name\" | tabularize
+run_script $SNOW_JS_SYS_PREFIX/table-search.js \"$search_by\" \"$name\" | tabularize

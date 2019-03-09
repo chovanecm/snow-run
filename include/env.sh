@@ -1,12 +1,6 @@
 #!/bin/bash
-export SNOW_DIR=~/.snow-run
-export SNOW_TMP_DIR=$SNOW_DIR/tmp/$snow_instance
-export SNOW_COOKIE_FILE=$SNOW_TMP_DIR/cookies.txt
-mkdir -p $SNOW_TMP_DIR
 
-export SNOW_INCLUDE_DIR=$(dirname ${BASH_SOURCE})
-export SNOW_BIN_DIR=$SNOW_INCLUDE_DIR/../bin
-export SNOW_JS_DIR=$SNOW_INCLUDE_DIR/../js
+source "$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )"/env-vars.sh
 
 function ensure_instance_set() {
     if [[ -z ${snow_instance} ]];
@@ -66,4 +60,23 @@ function get_script {
 function run_script {
     # Execute script file using arguments given
     get_script "$@" | $SNOW_BIN_DIR/snow-run.sh -
+}
+
+
+# Autocomplete helpers
+# Scripts that want to provide their own autocomplete support should include this file, set ENABLE_AUTOCOMPLETE=1 and call enable_autocomplete option1 option2
+
+# Autocomplete can be enabled for script by declaring ENABLE_AUTOCOMPLETE=1 before including this script
+if ! [[ $ENABLE_AUTOCOMPLETE ]] && [[ -n $SNOW_AUTOCOMPLETE ]]
+then
+    # Autocomplete is not enabled by script. Do nothing
+    exit 1
+fi
+
+function enable_autocomplete {
+    if [[ -n $SNOW_AUTOCOMPLETE ]]
+    then
+        echo "$@"
+        exit 1
+    fi
 }

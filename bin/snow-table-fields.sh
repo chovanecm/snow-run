@@ -9,4 +9,4 @@ source $my_dir/../include/env.sh
 x=$# check_arguments 1
 name=$1
 
-run_script table-fields.js \"$name\" | tabularize
+run_script $SNOW_JS_SYS_PREFIX/table-fields.js \"$name\" | tabularize

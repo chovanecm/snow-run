@@ -1,0 +1,104 @@
+#!/bin/bash
+
+my_dir=$(dirname $0)
+
+
+function handle_scriptinclude {
+    command=$1
+    shift
+    case $command in
+        search)
+            exec $my_dir/snow-scriptinclude-search.sh "$@"
+            ;;
+        *)
+            if [[ -n $SNOW_AUTOCOMPLETE ]]
+            then
+                echo search
+                exit 1
+            fi
+            echo "Available options: search SCRIPT_INCLUDE_NAME" >&2
+            exit 1
+            ;;
+    esac
+}
+
+function handle_table {
+    command=$1
+    shift
+    case $command in
+        search)
+            exec $my_dir/snow-table-search.sh "$@"
+            ;;
+        fields)
+            exec $my_dir/snow-table-fields.sh "$@"
+            ;;
+        *)
+            if [[ -n $SNOW_AUTOCOMPLETE ]]
+            then
+                echo "search fields"
+                exit 1
+            fi
+            echo "Available options: $(SNOW_AUTOCOMPLETE=1 handle_table)" >&2
+            exit 1
+            ;;
+    esac
+}
+
+
+command=$1
+shift
+
+case $command in
+    login)
+        exec $my_dir/snow-login.sh
+        ;;
+    info)
+        exec $my_dir/snow-info.sh
+        ;;
+    elevate)
+        exec $my_dir/snow-elevate.sh
+        ;;
+    eval)
+        exec $my_dir/snow-eval.sh "$@"
+        ;;
+    exec)
+        exec $my_dir/snow-exec.sh "$@"
+        ;;
+    inspect)
+        exec $my_dir/snow-inspect.sh "$@"
+        ;;
+    run)
+        exec $my_dir/snow-run.sh "$@"
+        ;;
+    scriptinclude)
+        handle_scriptinclude "$@"
+        exit $?
+        ;;
+    table)
+        handle_table "$@"
+        exit $?
+        ;;
+
+    *)
+        if [[ -n $SNOW_AUTOCOMPLETE ]]
+        then
+            echo "login info elevate eval exec inspect run scriptinclude table"
+            exit 1
+        fi
+        echo "Available options: $(SNOW_AUTOCOMPLETE=1 $0)"
+        exit 1
+esac
+
+
+
+# POSITIONAL_ARGS=()
+# while [[ $# -gt 0]]
+# do
+#     key="$1"
+#     case $key in
+#     login)
+
+#     esac #lol
+# done
+# # restore positional parameters
+# set -- "${POSITIONAL_ARGS[@]"

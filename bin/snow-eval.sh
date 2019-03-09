@@ -11,6 +11,6 @@ x=$# check_arguments 1
 expression=$1
 
 
-script=$(cat $SNOW_JS_DIR/eval.js)
+script=$(cat $SNOW_JS_SYS_DIR/eval.js)
 
 echo -e "$script\n\$exec($expression)" | $my_dir/snow-run.sh -

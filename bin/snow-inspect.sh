@@ -11,4 +11,4 @@ x=$# check_arguments 1
 
 name=$1
 
-run_script inspect.js $name | tabularize
+run_script $SNOW_JS_SYS_PREFIX/inspect.js $name | tabularize
