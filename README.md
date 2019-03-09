@@ -103,7 +103,7 @@ CMDBItem                     Class for Configuration Item helper functions
 ### Inspecting a script include or another object
 
 ```shell
-snow inspect SCRIPT_INCLUDE_OR_EXPRESSSION
+snow inspect SCRIPT_INCLUDE_OR_EXPRESSION
 ```
 
 Example:
@@ -227,7 +227,7 @@ Hello John Doe
 
 Any output produced by extensions is automatically formatted as table with columns identified by tabulator (`\t`).
 Instead of producing output with TABs manually, the `$echo(/* any number of arguments */)` function can be called with any number of arguments representing columns. Unless only one argument is provided, any new-lines strings are automatically converted to spaces to prevent the resulting table from being wrapped to the next line.
-If this is not the desired behaviour, call `$echo("This is \n New line)` instead.
+If this is not the desired behaviour, call `$echo("This is \n New line")` instead.
 
 The `$echo()` function with one argument will correctly print strings with new-lines characters.
 
@@ -268,14 +268,14 @@ function $exec(firstname, lastname) {
  
 function $help() {
     $echo("Print out name and some stuff around");
-    $echo("Usage: fistName, lastName");
+    $echo("Usage: firstName, lastName");
 }
  ```
  
 ```console
 you@machine:~$ snow echo -h
 Print out name and some stuff around
-Usage: fistName, lastName
+Usage: firstName, lastName
 New
 line
 ```
