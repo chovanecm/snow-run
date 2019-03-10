@@ -1,6 +1,15 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 *.sh		text eol=lf
 snow        text eol=lf
+.gitattributes  text eol=lf
+=======
+*.sh		text eol=lf
+>>>>>>> Stashed changes
+=======
+*.sh		text eol=lf
+>>>>>>> Stashed changes
 =======
 *.sh		text eol=lf
 >>>>>>> Stashed changes
