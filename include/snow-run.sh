@@ -43,5 +43,5 @@ function split_std_and_error {
 
 curl https://$snow_instance/sys.scripts.do -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'Cache-Control: no-cache' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -s -b $SNOW_COOKIE_FILE --data "sysparm_ck=$token&runscript=Run+script&record_for_rollback=on&quota_managed_transaction=on" --data-urlencode script@$SCRIPT_FILE --compressed \
  | tee $SNOW_TMP_DIR/last_run_output.txt | sed 's/.*<PRE>//' \
- | sed 's/\(<BR\/>\)\{0,1\}\*\*\* Script: /\nSNOW_STD_OUT:\n/g' | sed 's/<BR\/>/\nSNOW_ERR_OUT:\n/g' | tee hoj.txt \
+ | sed 's/\(<BR\/>\)\{0,1\}\*\*\* Script: /\nSNOW_STD_OUT:\n/g' | sed 's/<BR\/>/\nSNOW_ERR_OUT:\n/g' \
  | head -n -1 | split_std_and_error

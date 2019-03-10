@@ -7,7 +7,7 @@ if [[ -z $snow_instance ]]
 then
     echo -n "ServiceNow instance (e.g. dev1234.service-now.com): "
     read snow_instance
-    export snow_instace
+    export snow_instance
 fi
 
 

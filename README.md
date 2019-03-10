@@ -20,7 +20,7 @@ YOU HAVE BEEN WARNED!
 # Instructions
 
 ## Setting up Environment
-1. Set your instance
+1. Set your instance (optional, you can skip to step 2)
  
  *Preferrably, avoid using the tool with production instances.*
 
@@ -28,7 +28,7 @@ YOU HAVE BEEN WARNED!
  export snow_instance=dev1234.service-now.com
  ```
 
-2. Get scripts on your PATH and enable autocompletion
+2. Get scripts on your PATH, enable autocompletion and enter credentials
 ```shell
 source snow-run-env.sh
 ```
@@ -39,8 +39,7 @@ source snow-run-env.sh
 snow login
 ```
 
-The script asks for your username and password.
-This will create a directory under your `$HOME` which stores the session and other cookies.
+The will create a user session and store coookies to a directory under your `$HOME`.
 
 You can display path to the directory with `snow info`:
 ```console
@@ -76,9 +75,7 @@ There are 54 records in the incident table.
 Current user: admin
 ```
 
-### Useful scripts
-
-#### Searching for script includes by name
+### Searching for script includes by name
 
 ```shell
 snow scriptinclude search STRING
@@ -174,6 +171,29 @@ watch_list                Watch list                glide_list
 upon_reject               Upon reject               string
 sys_updated_on            Updated                   glide_date_time
 (…)
+```
+
+### Querying Tables
+
+```shell
+snow record search [-q|--query ENCODED_QUERY] [-f|--fields FIELDS] [-l|--limit NUMBER] [--no-header] TABLE_NAME
+# snow r search works as well
+```
+
+Perform a query on a table.
+
+- `-q|--query` limit results to those matching an encoded query (see ServiceNow)
+- `-f|--fields` comma-separated list of fields to return
+- `-l|--limit` the maximum number of records to return
+- `--no-header` omit column names that would normally be printed
+
+
+Example:
+```console
+you@machine:~$ snow r search -l 2 -f name,description -q nameSTARTSWITHcmdb sys_script_include
+name                         description
+CMDBDuplicateRemediatorUtil  Utility for the CMDB Duplicate Remediator
+CMDBRelationshipAjax         Returns available CMDB relationships
 ```
 
 ### Extensions

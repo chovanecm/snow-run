@@ -21,7 +21,7 @@ function check_arguments() {
 
 function tabularize {
     max_len=$(tput cols)
-    column -t -s $'\t' | cut -c -$max_len
+    column -t -s $'\t' -e | cut -c -$max_len
 }
 
 
