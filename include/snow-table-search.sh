@@ -18,4 +18,4 @@ fi
 
 x=$# check_arguments 1
 name=$1
-run_script $SNOW_JS_SYS_PREFIX/table-search.js \"$search_by\" \"$name\" | tabularize
+snow r search -q "${search_by}LIKE${name}" -f name,label sys_db_object --no-header
