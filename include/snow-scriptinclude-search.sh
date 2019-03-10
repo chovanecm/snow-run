@@ -17,4 +17,4 @@ x=$# check_arguments 1
 
 name=$1
 
-run_script $SNOW_JS_SYS_PREFIX/scriptinclude-search.js \"$name\" \"$operator\" | tabularize
+snow r search sys_script_include -q "name${operator}${name}" -f name,description --no-header
