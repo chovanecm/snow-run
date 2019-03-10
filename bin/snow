@@ -44,6 +44,25 @@ function handle_table {
     esac
 }
 
+function handle_record {
+    command=$1
+    shift
+    case $command in
+        search)
+            exec $my_dir/../include/snow-record-search.sh "$@"
+            ;;
+        *)
+            if [[ -n $SNOW_AUTOCOMPLETE ]]
+            then
+                echo "search"
+                exit 1
+            fi
+            echo "Available options: $(SNOW_AUTOCOMPLETE=1 handle_table)" >&2
+            exit 1
+            ;;
+    esac
+}
+
 
 command=$1
 shift
@@ -78,6 +97,10 @@ case $command in
         handle_table "$@"
         exit $?
         ;;
+    r|record)
+        handle_record "$@"
+        exit $?
+        ;;
 
     *)
         # is it a script?
@@ -87,7 +110,7 @@ case $command in
         fi
         if [[ -n $SNOW_AUTOCOMPLETE ]]
         then
-            echo "login info elevate eval exec inspect run scriptinclude table $(cd $my_dir/../js; ls *.js | sed 's/\.js//g')"
+            echo "login info elevate eval exec inspect run scriptinclude table record $(cd $my_dir/../js; ls *.js | sed 's/\.js//g')"
             exit 1
         fi
         echo "Available options: $(SNOW_AUTOCOMPLETE=1 $0)"

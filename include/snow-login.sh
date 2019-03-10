@@ -4,11 +4,6 @@ source $my_dir/../include/env.sh
 
 ensure_instance_set
 
-echo -n User:
-read user
-echo -n Password:
-read -s password
-
 
 export login_token=$($SNOW_INCLUDE_DIR/_get-sysparm_ck.sh)
 
@@ -18,7 +13,7 @@ then
   exit 1
 fi;
 
-curl https://${snow_instance}/login.do -b $SNOW_COOKIE_FILE --data "sysparm_ck=$login_token&user_name=$user&user_password=$password&ni.nolog.user_password=true&ni.noecho.user_name=true&ni.noecho.user_password=true&screensize=1920x1080&sys_action=sysverb_login" --compressed --cookie-jar $SNOW_COOKIE_FILE 
+curl https://${snow_instance}/login.do -b $SNOW_COOKIE_FILE --data "sysparm_ck=$login_token&user_name=$snow_user&user_password=$snow_pwd&ni.nolog.user_password=true&ni.noecho.user_name=true&ni.noecho.user_password=true&screensize=1920x1080&sys_action=sysverb_login" --compressed --cookie-jar $SNOW_COOKIE_FILE 
 
 status=$?
 if [[ $status -ne 0 ]];
