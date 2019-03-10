@@ -196,6 +196,51 @@ CMDBDuplicateRemediatorUtil  Utility for the CMDB Duplicate Remediator
 CMDBRelationshipAjax         Returns available CMDB relationships
 ```
 
+### Creating or Updating Tables (EXPERIMENTAL)
+
+```shell
+snow table-create TABLE_NAME field1:field_type1 field2:field_typ2 ...
+```
+
+Create or update ServiceNow table.
+
+- `field_name` is a database field name, e.g. `u_name` 
+- `field_type` is one of: `string` `integer` `boolean` `glide_date` `glide_date_time` `currency` `price` `reference` (`reference` doesn't work properly yet)
+
+You can specify multple fields at once.
+
+***This command is highly experimental!***
+
+Example:
+```console
+you@machine:~$ snow table-create u_pet u_pet_name:string u_birthdate:glide_date
+TableCreate for: u_pet
+DBTable.create() for: u_pet
+Replication is not enabled on table: u_pet, not queueing replication table create special db event
+LicensingTableCreateListener: Initializing licensing attrs for table u_pet
+[0:00:00.426] Table create for: u_pet
+Begin ResourceSupport.buildTableResources(u_pet, undefined)
+End ResourceSupport.buildTableResources
+OK
+```
+
+We can check it has been created:
+
+```console
+you@machine:~$ snow table search u_pet
+u_pet  Pet
+```
+
+and perhaps see if something is in there:
+
+```console
+you@machine:~$ snow r search u_pet -f u_birthdate,u_pet_name,sys_created_by
+u_birthdate  u_pet_name  sys_created_by
+
+2019-02-04   Billy       admin
+```
+
+
 ### Extensions
 
 Besides running arbitrary scripts with `snow run FILE`, which don't require any special modification, the tool also allows for writing custom extensions.

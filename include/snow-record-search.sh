@@ -41,9 +41,6 @@ do
     "--no-header")
         PRINT_TABLE_HEADER=false
         ;;
-    "--no-format")
-        TABULARIZE=false
-        ;;
     "-h"|"--help")
         display_usage
         ;;
@@ -114,11 +111,4 @@ function read_answer () {
     done
 }
 
-echo "curl --user $snow_user:password -G $command_opts -H \"Accept: application/xml\" \"https://$snow_instance/api/now/v2/table/$table_name\" -s --compressed" >&2
-answer="$(curl --user $snow_user:$snow_pwd -G $command_opts -H "Accept: application/xml" "https://$snow_instance/api/now/v2/table/$table_name" -s --compressed | read_answer)"
-if [[ $TABULARIZE == false ]]
-then
-    echo "$answer"
-else
-    echo  "$answer" | tabularize
-fi
+curl --user $snow_user:$snow_pwd -G $command_opts -H "Accept: application/xml" "https://$snow_instance/api/now/v2/table/$table_name" -s --compressed | read_answer | tabularize
