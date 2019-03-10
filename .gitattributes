@@ -1,2 +1,6 @@
+<<<<<<< Updated upstream
 *.sh		text eol=lf
 snow        text eol=lf
+=======
+*.sh		text eol=lf
+>>>>>>> Stashed changes
