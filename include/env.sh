@@ -78,7 +78,17 @@ fi
 function enable_autocomplete {
     if [[ -n $SNOW_AUTOCOMPLETE ]]
     then
-        echo "$@"
-        exit 1
+        if [[ $1 == "-e" ]]
+        then
+            shift
+            # Lazy - evaluate command
+            # set SNOW_AUTOCOMPLETE to nothing 
+            export SNOW_AUTOCOMPLETE=
+            $@
+            exit 1;
+        else
+            echo "$@"
+            exit 1
+        fi
     fi
 }
