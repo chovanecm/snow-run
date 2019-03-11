@@ -2,6 +2,24 @@
 
 my_dir=$(dirname $0)
 
+function handle_attachment {
+    command=$1
+    shift
+    case $command in
+        list)
+            exec $my_dir/../include/attachment-list.sh "$@"
+            ;;
+        *)
+            if [[ -n $SNOW_AUTOCOMPLETE ]]
+            then
+                echo list
+                exit 1
+            fi
+            echo "Available options: list TABLE_NAME" >&2
+            exit 1
+            ;;
+    esac
+}
 
 function handle_scriptinclude {
     command=$1
@@ -101,7 +119,10 @@ case $command in
         handle_record "$@"
         exit $?
         ;;
-
+    attachment)
+        handle_attachment "$@"
+        exit $?
+        ;;
     *)
         # is it a script?
         if [[ -e $my_dir/../js/$command.js ]]
@@ -110,7 +131,7 @@ case $command in
         fi
         if [[ -n $SNOW_AUTOCOMPLETE ]]
         then
-            echo "login info elevate eval exec inspect run scriptinclude table record $(cd $my_dir/../js; ls *.js | sed 's/\.js//g')"
+            echo " attachment login info elevate eval exec inspect run scriptinclude table record $(cd $my_dir/../js; ls *.js | sed 's/\.js//g')"
             exit 1
         fi
         echo "Available options: $(SNOW_AUTOCOMPLETE=1 $0)"
