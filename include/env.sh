@@ -92,3 +92,60 @@ function enable_autocomplete {
         fi
     fi
 }
+
+
+# XML Functions
+
+
+read_dom () {
+    local IFS=\>
+    read -d \< ENTITY CONTENT
+}
+print_array () {
+    echo -n $1
+    shift
+
+    while [[ $1 ]]
+    do
+        echo -ne "\t"
+        echo -n -e "$1"
+        shift
+    done
+    echo
+}
+function read_row () {
+    COLUMN_NAMES=()
+    VALUES=()
+    while read_dom && ! [[ $ENTITY == "/result" ]]
+    do
+        if [[ $ENTITY == /* ]]
+        then
+            # end tag
+            continue
+        fi
+        if [[ $ENTITY == */ ]]
+        then
+            # empty tag
+            ENTITY=${ENTITY::(-1)}
+            CONTENT=" "
+        fi
+        COLUMN_NAMES+=("$ENTITY")
+        VALUES+=("$CONTENT")
+    done
+    if [[ $PRINT_TABLE_HEADER == true ]]
+    then
+        print_array "${COLUMN_NAMES[@]}"
+        echo
+        PRINT_TABLE_HEADER=false
+    fi
+    print_array "${VALUES[@]}"
+}
+function read_answer () {
+    while read_dom
+    do
+        if [[ $ENTITY == "result" ]]
+        then
+            read_row
+        fi
+    done
+}
