@@ -308,6 +308,8 @@ Besides running arbitrary scripts with `snow run FILE`, which don't require any 
 
 Extensions are regular JavaScript files implementing certain interface and stored in the `js` subdirectory of the project.
 
+*All of the ServiceNow server-side script API, such as `GlideRecord`, `gs` etc. is available.*
+
 Each extension must declare and implement the following method:
 ```javascript
 function $exec(/* any number of arguments */) {
