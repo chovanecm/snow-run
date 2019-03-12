@@ -1,6 +1,9 @@
 # Snow-Run
 
 This tools aims to provide command-line interface for running locally stored ServiceNow background scripts.
+Additionally, it offers a few useful commands to interact with ServiceNow without having to click around in web browser.
+
+It is experimental and assumed to work with the London release, although it may work with other releases as well.
 
 Version 0.0.1
 
@@ -22,7 +25,7 @@ YOU HAVE BEEN WARNED!
 ## Setting up Environment
 1. Set your instance (optional, you can skip to step 2)
  
- *Preferrably, avoid using the tool with production instances.*
+ *Preferably, avoid using the tool with production instances.*
 
  ```shell
  export snow_instance=dev1234.service-now.com
@@ -35,11 +38,13 @@ source snow-run-env.sh
 
 3. Log in:
 
+Some commands require you to log in first, depending on whether they are executed through REST interface or background script.
+
 ```shell
 snow login
 ```
 
-The will create a user session and store coookies to a directory under your `$HOME`.
+The will create a user session and store cookies to a directory under your `$HOME`.
 
 You can display path to the directory with `snow info`:
 ```console
@@ -161,7 +166,7 @@ return gr;
 snow table search [-l] STRING
 ```
 
-By default, this command searches for table names containing `STRING`. The `-l` option changes the behavior to search in table labels.
+By default, this command searches for table names containing `STRING`. The `-l` option changes the behaviour to search in table labels.
 
 Example:
  ```console
@@ -182,7 +187,7 @@ std_change_properties  Standard Change Properties
 snow table fields TABLE_NAME
 ```
 
-This will produce output of all fields on the table (including inhertied fields), their labels and data type.
+This will produce output of all fields on the table (including inherited fields), their labels and data type.
 
 Example:
 ```console
@@ -226,7 +231,7 @@ CMDBRelationshipAjax         Returns available CMDB relationships
 snow record delete TABLE_NAME SYS_IDS...
 ```
 
-Perform a query on a table.
+Delete record(s).
 
 - `TABLE_NAME` name of the table to delete records from
 - `SYS_IDS...` whitespace-separated list of sys ids to remove. If omitted, sys_ids are read from the standard input
@@ -251,7 +256,7 @@ Create or update ServiceNow table.
 - `field_name` is a database field name, e.g. `u_name` 
 - `field_type` is one of: `string` `integer` `boolean` `glide_date` `glide_date_time` `currency` `price` `reference` (`reference` doesn't work properly yet)
 
-You can specify multple fields at once.
+You can specify multiple fields at once.
 
 ***This command is highly experimental!***
 
