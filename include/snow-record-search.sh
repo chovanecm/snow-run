@@ -65,4 +65,4 @@ do
 done
 
 
-curl --user $snow_user:$snow_pwd -G $command_opts -H "Accept: application/xml" "https://$snow_instance/api/now/v2/table/$table_name" -s --compressed | read_answer | tabularize
+curl --user $snow_user:$snow_pwd -G $command_opts -H "Accept: application/xml" "https://$snow_instance/api/now/v2/table/$table_name" -sS --compressed | read_answer | tabularize

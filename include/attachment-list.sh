@@ -12,4 +12,4 @@ curl "https://$snow_instance/api/now/attachment" \
 --data-urlencode sysparm_limit="$limit" \
 -G  \
 --header "Accept:application/xml" \
---user $snow_user:$snow_pwd -s | read_answer | tabularize
+--user $snow_user:$snow_pwd -sS | read_answer | tabularize

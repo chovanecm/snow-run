@@ -5,7 +5,7 @@ source $my_dir/../include/env.sh
 ensure_instance_set
 
 
-token=$(curl -b $SNOW_COOKIE_FILE https://$snow_instance/navpage.do -s | grep -oP "g_ck = '\K\w+")
+token=$(curl -b $SNOW_COOKIE_FILE https://$snow_instance/navpage.do -sS | grep -oP "g_ck = '\K\w+")
 if [[ -z $token ]]
 then
    echo "Could not obtain authentication token to elevate privileges." >&2
