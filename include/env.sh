@@ -20,7 +20,7 @@ function check_arguments() {
 }
 
 function tabularize {
-    max_len=$(tput cols)
+    max_len=$(( $(tput cols) - 1 ))
     # the ugly sed is here to prevent first line being shifted to left if the first column is empty :/
     sed 's/^\t/._\t/g' | column -t -s $'\t' -e | sed 's/^\._ /   /g' | cut -c -$max_len
 }
