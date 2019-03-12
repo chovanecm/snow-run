@@ -173,7 +173,7 @@ sys_updated_on            Updated                   glide_date_time
 (…)
 ```
 
-### Querying Tables
+### Querying Records
 
 ```shell
 snow record search [-q|--query ENCODED_QUERY] [-f|--fields FIELDS] [-l|--limit NUMBER] [--no-header] TABLE_NAME
@@ -186,6 +186,7 @@ Perform a query on a table.
 - `-f|--fields` comma-separated list of fields to return
 - `-l|--limit` the maximum number of records to return
 - `--no-header` omit column names that would normally be printed
+- `--sys-id` shortcut for `-f sys_id --no-header`
 
 
 Example:
@@ -196,6 +197,26 @@ CMDBDuplicateRemediatorUtil  Utility for the CMDB Duplicate Remediator
 CMDBRelationshipAjax         Returns available CMDB relationships
 ```
 
+### Deleting Records
+
+```shell
+snow record delete TABLE_NAME SYS_IDS...
+```
+
+Perform a query on a table.
+
+- `TABLE_NAME` name of the table to delete records from
+- `SYS_IDS...` whitespace-separated list of sys ids to remove. If omitted, sys_ids are read from the standard input
+
+
+Example:
+```console
+you@machine:~$ snow r search incident -q short_descriptionSTARTSWITHTest | snow r delete sys_script_include
+```
+
+```console
+you@machine:~$ snow r delete sys_user 6816f79cc0a8016401c5a33be04be441 abdef79cc0a8016401c5a33be04fg998
+```
 ### Creating or Updating Tables (EXPERIMENTAL)
 
 ```shell
