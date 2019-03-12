@@ -131,6 +131,29 @@ you@machine:~$ snow eval 1+1
 you@machine:~$ snow eval 'gs.getUserName()'
 admin
 ```
+
+Ever wondered how certain function looks like, what arguments it takes, but too lazy to read its script include? `eval` may come in handy here too.
+
+```console
+you@machine:~$ snow eval 'GlideRecordUtil.prototype.getGR'
+
+function (base_table, sys_id) {
+var gr = new GlideRecord(base_table);
+if (!gr.get(sys_id)) {
+return null;
+}
+var klass = gr.getRecordClassName();
+if (klass == base_table) {
+return gr;
+}
+gr = new GlideRecord(klass);
+if (!gr.get(sys_id)) {
+return null;
+}
+return gr;
+}
+```
+
 ***Use with caution. You can accidentaly execute code with side effects!***
 
 ### Searching for Tables
