@@ -1,28 +1,40 @@
 # Snow-Run
 
-This tools aims to provide command-line interface for running locally stored ServiceNow background scripts.
-Additionally, it offers a few useful commands to interact with ServiceNow without having to click around in web browser.
+Snow-Run aims to help developers and administrators to interact with their ServiceNow instance through command line.
+Initially started to provide a command-line interface for executing server-side scripts remotely from the command line or a local file,
+it now additionally offers a few useful commands to interact with ServiceNow without having to click around in web browser,
+including database search and run-time object inspection.
 
-It is experimental and assumed to work with the London release, although it may work with other releases as well.
+Snow-Run is extensible. You can write your own extensions using ServiceNow JavaScript API that you are already familiar with.
+
+It is free, experimental, assumed to work with the London release, although it may work with other releases as well, and in no way affiliated with ServiceNow Inc.
 
 Version 0.0.1
 
 Requirements:
- - curl, bash
+ - curl, bash, grep, sed, etc. (=> Linux / Windows Subsytem for Linux / Cygwin / MSYS / …)
  - a running ServiceNow instance
  - an account in ServiceNow that is capable of running background scripts
 
 # Warnings
 
-***Never ever try running anything of this against your production instance.***
-
-***Never ever allow anyone to steal your cookies (see bellow).***
+- ***Never ever try running anything of this against your production instance.***
+- ***Never ever allow anyone to steal your cookies (see bellow).***
+- The tool has been written to accommodate author's current needs; it may not correctly detect some error states, and in general, mostly expects "happy-case" scenarios.
 
 YOU HAVE BEEN WARNED!
 
+
+
 # Instructions
 
+This guide assumes you have an administrator account in your ServiceNow instance. If not, some commands may not work for you.
+
+Scripts have been "tested" (=are known (more or less) to work) with Ubuntu 18.04 using Windows Subsystem for Linux as well as with MSYS shipped with Git for Windows.
+
+
 ## Setting up Environment
+
 1. Set your instance (optional, you can skip to step 2)
  
  *Preferably, avoid using the tool with production instances.*
