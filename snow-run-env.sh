@@ -3,26 +3,37 @@ export PATH=$PATH:$my_dir/bin
 
 source $my_dir/include/autocomplete.sh
 
-if [[ -z $snow_instance ]]
+
+echo "ServiceNow instance(e.g. dev1234.service-now.com) [$snow_instance]:"
+read r_snow_instance
+if [[ -n $r_snow_instance ]]
 then
-    echo -n "ServiceNow instance (e.g. dev1234.service-now.com): "
-    read snow_instance
-    export snow_instance
+    snow_instance=$r_snow_instance
+    unset r_snow_instance
 fi
+export snow_instance
 
 
-if [[ -z $snow_user ]]
-then
-    echo -n "User: "
-    read snow_user
-    export snow_user
-fi
 
-if [[ -z $snow_pwd ]]
+echo -n "User [$snow_user]: "
+read r_snow_user
+if [[ -n $r_snow_user ]]
 then
-    echo -n "Password: "
-    read -s snow_pwd
-    export snow_pwd
+    snow_user=$r_snow_user
+    unset r_snow_user
 fi
+export snow_user
+
+
+
+echo -n "Password: "
+read -s r_snow_pwd
+if [[ -n $r_snow_pwd ]]
+then
+    snow_pwd=$r_snow_pwd
+    unset r_snow_pwd
+fi
+export snow_pwd
+
 
 echo ""
