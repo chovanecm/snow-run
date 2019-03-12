@@ -3,7 +3,8 @@
 ENABLE_AUTOCOMPLETE=1
 display_usage() { 
 	echo "Search for records via REST API" 
-	echo -e "\nUsage:\nsnow r search [-q|--query ENCODED_QUERY] [-f|--fields FIELDS] [-l|--limit NUMBER] [--no-header] TABLE_NAME\n"
+	echo -e "\nUsage:\nsnow r search [options] TABLE_NAME\n"
+    echo -e "Options:\n-q|--query ENCODED_QUERY\n-f|--fields FIELDS\n-l|--limit NUMBER\n--no-header\n--sys-id\tEquivalent to --no-header -f sys_id"
     echo Fields are returned in arbitrary order!
     echo -e "Example:\n snow r search -f name,description -q nameLIKEcmdb -l 10 sys_script_include"
     exit 1
@@ -41,6 +42,10 @@ do
     "--no-header")
         PRINT_TABLE_HEADER=false
         ;;
+    "--sys-id")
+        params+=("sysparm_fields=sys_id")
+        PRINT_TABLE_HEADER=false
+        ;;
     "-h"|"--help")
         display_usage
         ;;
@@ -65,5 +70,4 @@ do
 done
 command_opts+=" --data-urlencode sysparm_exclude_reference_link=true"
 
-
-curl --user $snow_user:$snow_pwd -G $command_opts -H "Accept: application/xml" "https://$snow_instance/api/now/v2/table/$table_name" -sS --compressed | read_answer | tabularize
+curl --user $snow_user:$snow_pwd -G $command_opts -H "Accept: application/xml" "https://$snow_instance/api/now/v2/table/$table_name" -sS --compressed |tr '\n' ' ' | read_answer | tabularize
