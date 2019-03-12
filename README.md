@@ -211,7 +211,7 @@ Perform a query on a table.
 
 Example:
 ```console
-you@machine:~$ snow r search incident -q short_descriptionSTARTSWITHTest | snow r delete sys_script_include
+you@machine:~$ snow r search incident -q short_descriptionSTARTSWITHTest | snow r delete incident
 ```
 
 ```console
