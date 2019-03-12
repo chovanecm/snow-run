@@ -63,6 +63,7 @@ for param in ${params[@]}
 do
     command_opts+=" --data-urlencode $param"
 done
+command_opts+=" --data-urlencode sysparm_exclude_reference_link=true"
 
 
 curl --user $snow_user:$snow_pwd -G $command_opts -H "Accept: application/xml" "https://$snow_instance/api/now/v2/table/$table_name" -sS --compressed | read_answer | tabularize
