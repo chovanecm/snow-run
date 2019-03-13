@@ -28,8 +28,7 @@ YOU HAVE BEEN WARNED!
 
 # Instructions
 
-This guide assumes you have an administrator account in your ServiceNow instance. If not, some commands may not work for you.
-
+This guide assumes you have an administrator account in your ServiceNow instance. If not, some commands may not work for you.  
 Scripts have been "tested" (=are known (more or less) to work) with Ubuntu 18.04 using Windows Subsystem for Linux as well as with MSYS shipped with Git for Windows.
 
 
@@ -306,8 +305,7 @@ u_birthdate  u_pet_name  sys_created_by
 
 Besides running arbitrary scripts with `snow run FILE`, which don't require any special modification, the tool also allows for writing custom extensions.
 
-Extensions are regular JavaScript files implementing certain interface and stored in the `js` subdirectory of the project.
-
+Extensions are regular JavaScript files implementing certain interface and stored in the `js` subdirectory of the project.  
 *All of the ServiceNow server-side script API, such as `GlideRecord`, `gs` etc. is available.*
 
 Each extension must declare and implement the following method:
@@ -403,3 +401,20 @@ line
 ```
 
 
+----
+
+SNOW-RUN. Terminal interface to Service-Now.  
+Copyright (C) 2019  Martin Chovanec [martin@chovanecm.cz](mailto:martin@chovanecm.cz)
+
+This program is free software: you can redistribute it and/or modify  
+it under the terms of the GNU General Public License as published by  
+the Free Software Foundation, either version 3 of the License, or  
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,  
+but WITHOUT ANY WARRANTY; without even the implied warranty of  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License  
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
