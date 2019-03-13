@@ -235,6 +235,24 @@ name                         description
 CMDBDuplicateRemediatorUtil  Utility for the CMDB Duplicate Remediator
 CMDBRelationshipAjax         Returns available CMDB relationships
 ```
+### Counting Records
+
+```shell
+snow record-count [-q|--query ENCODED_QUERY] TABLE_NAME
+# note the minus between record and count
+```
+
+Perform a query on a table and count results.
+
+- `-q|--query` limit results to those matching an encoded query (see ServiceNow)
+
+
+
+Example:
+```console
+you@machine:~$ snow record-count -q "sys_created_on>=2018-01-01" incident
+37
+```
 
 ### Deleting Records
 

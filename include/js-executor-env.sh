@@ -60,6 +60,7 @@ function add_extension_api {
     "
 
     echo "$echo_function"
+    cat $SNOW_JS_SYS_DIR/include/parseOpts.js
 }
 
 function add_exec_call {
