@@ -17,16 +17,29 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
+# ---------------
+# This is the entry script for SNOW RUN
+# it routes commands to actual scripts that execute them
+
+# Get the directory in which the current script resides. It's not a bullet-proof solution, but it works under normal circumstances
 my_dir=$(dirname $0)
 
+
+
+# Function that handles what happens when the command starts with snow attachment
 function handle_attachment {
     command=$1
     shift
     case $command in
+        # known command
         list)
             exec $my_dir/../include/attachment-list.sh "$@"
             ;;
+        # nothing or unknown command
         *)
+            # if the SNOW_AUTOCOMPLETE variable is set, we just print the options available for snow attachment
+            # it is assumed that SNOW_AUTOCOMPLETE is set when bash is trying to offer the user possible commands (autocompletion)
+            # see include/autocomplete.sh
             if [[ -n $SNOW_AUTOCOMPLETE ]]
             then
                 echo list
@@ -38,6 +51,7 @@ function handle_attachment {
     esac
 }
 
+# Handle snow scriptinclude
 function handle_scriptinclude {
     command=$1
     shift
@@ -57,6 +71,7 @@ function handle_scriptinclude {
     esac
 }
 
+# Handle snow table
 function handle_table {
     command=$1
     shift
@@ -79,6 +94,7 @@ function handle_table {
     esac
 }
 
+# Handle snow record or snow r
 function handle_record {
     command=$1
     shift
@@ -104,7 +120,7 @@ function handle_record {
 
 command=$1
 shift
-
+# top-level command selection (e.g. snow run, snow login, ...)
 case $command in
     login)
         exec $my_dir/../include/snow-login.sh
@@ -144,7 +160,7 @@ case $command in
         exit $?
         ;;
     *)
-        # is it a script?
+        # is the argument a script in the js directory?
         if [[ -e $my_dir/../js/$command.js ]]
         then
             exec $0 exec "$command" "$@"
@@ -158,16 +174,3 @@ case $command in
         exit 1
 esac
 
-
-
-# POSITIONAL_ARGS=()
-# while [[ $# -gt 0]]
-# do
-#     key="$1"
-#     case $key in
-#     login)
-
-#     esac #lol
-# done
-# # restore positional parameters
-# set -- "${POSITIONAL_ARGS[@]"
