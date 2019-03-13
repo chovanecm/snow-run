@@ -60,11 +60,11 @@ do
     urls+=("https://$snow_instance/api/now/table/$table_name/$sys_id")
     if [[ ${#urls[@]} -ge $BATCH_SIZE ]]
     then
-        curl --request DELETE --header "Accept:application/json" --user $snow_user:$snow_pwd ${urls[@]}
+        curl --request DELETE --header "Accept:application/json" --user $snow_user:$snow_pwd -sS ${urls[@]}
         urls=()
     fi
 done
 if [[ $urls ]]
 then
-    curl --request DELETE --header "Accept:application/json" --user $snow_user:$snow_pwd ${urls[@]}
+    curl --request DELETE --header "Accept:application/json" --user $snow_user:$snow_pwd -sS ${urls[@]}
 fi
