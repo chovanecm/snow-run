@@ -79,9 +79,8 @@ You can run arbitrary background script stored on your computer as if you entere
 
 ```shell
 snow run FILE
-# or write the script directly in console:
+# or write the script directly in terminal (read it from the standard input):
 snow run
-# the - sign tells the tool to read from standard input
 ```
 
 Example:
@@ -258,12 +257,20 @@ you@machine:~$ snow record-count -q "sys_created_on>=2018-01-01" incident
 
 ```shell
 snow record delete TABLE_NAME SYS_IDS...
+# or
+snow record delete TABLE_NAME -q|--query ENCODED_QUERY
+# or
+snow record delete TABLE_NAME -a|--all
 ```
 
 Delete record(s).
 
 - `TABLE_NAME` name of the table to delete records from
-- `SYS_IDS...` whitespace-separated list of sys ids to remove. If omitted, sys_ids are read from the standard input
+- `SYS_IDS...` whitespace-separated list of sys ids to remove. If omitted and no other options are specified, sys_ids are read from the standard input
+- `-q|--query` encoded query to select multiple records to be deleted at once
+- `-a|--all` delete all records in that table
+
+Options `-q` and `-a` require user confirmation.
 
 
 Example:
@@ -274,6 +281,19 @@ you@machine:~$ snow r search incident -q short_descriptionSTARTSWITHTest --sys-i
 ```console
 you@machine:~$ snow r delete sys_user 6816f79cc0a8016401c5a33be04be441 abdef79cc0a8016401c5a33be04fg998
 ```
+
+```console
+you@machine:~$ snow record delete incident -q "sys_created_on>=2018-11-01"
+There are 8 matching records in the incident table.
+Delete them? [Y/N]: y
+```
+
+```console
+you@machine:~$ snow r delete u_pet -a
+There are 1 matching records in the u_pet table.
+Delete them? [Y/N]: y
+```
+
 ### Creating or Updating Tables (EXPERIMENTAL)
 
 ```shell
@@ -319,7 +339,7 @@ u_birthdate  u_pet_name  sys_created_by
 ```
 
 
-### Extensions
+## Extensions
 
 Besides running arbitrary scripts with `snow run FILE`, which don't require any special modification, the tool also allows for writing custom extensions.
 
@@ -421,7 +441,7 @@ line
 
 ----
 
-SNOW-RUN. Terminal interface to Service-Now.  
+SNOW-RUN. Terminal interface to ServiceNow.  
 Copyright (C) 2019  Martin Chovanec [martin@chovanecm.cz](mailto:martin@chovanecm.cz)
 
 This program is free software: you can redistribute it and/or modify  
