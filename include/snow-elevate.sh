@@ -13,4 +13,4 @@ then
 fi;
 
 curl "https://$snow_instance/api/now/ui/impersonate/role" -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'X-WantSessionNotificationMessages: true' -H "X-UserToken: $token" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' -H 'Connection: keep-alive' --data-binary '{"roles":"security_admin"}' -b $SNOW_COOKIE_FILE --cookie-jar $SNOW_COOKIE_FILE --compressed -sS
-
+exit $?

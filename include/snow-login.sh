@@ -28,3 +28,4 @@ if [[ $status -ne 0 ]];
 then
     echo "SNOW Login not successful. curl returned $status" >&2
 fi
+exit $status

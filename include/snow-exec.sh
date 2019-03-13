@@ -6,6 +6,11 @@
 
 # Extensions must implement certain interface to work correctly. See README
 
+function display_usage() {
+    echo "Execute an extension script"
+    echo "Usage: snow exec EXTENSION_NAME args..."
+    echo "Alternative usage: snow EXTENSION_NAME args..."
+}
 
 script_name=$1
 
@@ -24,6 +29,7 @@ then
 fi
 
 source $SNOW_INCLUDE_DIR/env.sh
+x=$# check_arguments 1
 
 #  These are the options
 enable_autocomplete $(cd $SNOW_JS_DIR; ls *.js | sed 's/\.js//g')

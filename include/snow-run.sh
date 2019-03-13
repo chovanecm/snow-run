@@ -13,7 +13,8 @@ token=$(curl https://$snow_instance/sys.scripts.do -b $SNOW_COOKIE_FILE --cookie
 if [[ -z $token ]]
 then
    echo "Cannot get security token for service-now instance $snow_instance" >&2
-   exit
+   echo "Try logging in again (snow login)" >&2
+   exit 1
 fi;
 
 function split_std_and_error {
@@ -52,3 +53,5 @@ curl https://$snow_instance/sys.scripts.do -H 'Connection: keep-alive' -H 'Pragm
  | mark_script_output \
  | tee $SNOW_TMP_DIR/last_parsed_output.txt \
  | head -n -1 | split_std_and_error
+# exit with the first command's (curl)  exit code
+exit ${PIPESTATUS[0]}
