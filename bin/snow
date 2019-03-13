@@ -163,6 +163,11 @@ case $command in
         echo $my_dir/../include
         exit $?
         ;;
+    operators|op)
+        echo "Available operators for queries in ServiceNow:"
+        OFS="\t" echo "= != > < >= <= != STARTSWITH CONTAINS IN ENDSWITH 'DOES NOT CONTAIN' 'NOT IN'"
+        exit
+        ;;
     *)
         # is the argument a script in the js directory?
         if [[ -e $my_dir/../js/$command.js ]]
@@ -171,7 +176,7 @@ case $command in
         fi
         if [[ -n $SNOW_AUTOCOMPLETE ]]
         then
-            echo "--version attachment login info elevate eval exec inspect run scriptinclude table record $(cd $my_dir/../js; ls *.js | sed 's/\.js//g' | tr '\n' ' ')"
+            echo "--version attachment login info elevate eval exec inspect run scriptinclude table record operators $(cd $my_dir/../js; ls *.js | sed 's/\.js//g' | tr '\n' ' ')"
             exit 1
         fi
 
