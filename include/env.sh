@@ -28,8 +28,7 @@ function get_login_token() {
 }
 function tabularize {
     max_len=$(( $(tput cols) - 1 ))
-    # the ugly sed is here to prevent first line being shifted to left if the first column is empty :/
-    sed 's/^\t/._\t/g' | column -t -s $'\t' -e | sed 's/^\._ /   /g' | cut -c -$max_len
+    column -t -s $'\t' -e | cut -c -$max_len
 }
 
 
@@ -114,7 +113,7 @@ read_dom () {
     read -d \< ENTITY CONTENT
 }
 print_array () {
-    echo -n $1
+    echo -n "$1"
     shift
 
     while [[ $1 ]]
