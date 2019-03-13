@@ -171,10 +171,18 @@ case $command in
         fi
         if [[ -n $SNOW_AUTOCOMPLETE ]]
         then
-            echo " attachment login info elevate eval exec inspect run scriptinclude table record $(cd $my_dir/../js; ls *.js | sed 's/\.js//g')"
+            echo "--version attachment login info elevate eval exec inspect run scriptinclude table record $(cd $my_dir/../js; ls *.js | sed 's/\.js//g' | tr '\n' ' ')"
             exit 1
         fi
+
+        notice="SNOW-RUN  Copyright (C) 2019  Martin Chovanec <martin@chovanecm.cz>
+    This program comes with ABSOLUTELY NO WARRANTY; for details refer to GNU GPL.
+    This is free software, and you are welcome to redistribute it
+    under certain conditions; refer to GNU GPL for details."
+        echo "$notice"
+        echo ""
         echo "Available options: $(SNOW_AUTOCOMPLETE=1 $0)"
+        echo "Full documentation is available in the README.md file as well as on https://github.com/chovanecm/snow-run"
         exit 1
 esac
 

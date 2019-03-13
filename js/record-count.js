@@ -1,3 +1,6 @@
+/**
+ * Count the number of records matching a query
+ */
 function $exec(/*args*/) {
     var tableName;
     var encodedQuery;
