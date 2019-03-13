@@ -19,6 +19,13 @@ function check_arguments() {
     fi
 }
 
+function extract_sysparm_ck() {
+    grep -oP 'sysparm_ck[^>]*value="\K\w+'
+}
+
+function get_login_token() {
+    curl https://$snow_instance/login.do --cookie-jar $SNOW_COOKIE_FILE -sS | extract_sysparm_ck
+}
 function tabularize {
     max_len=$(( $(tput cols) - 1 ))
     # the ugly sed is here to prevent first line being shifted to left if the first column is empty :/

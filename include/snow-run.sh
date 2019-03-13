@@ -5,7 +5,7 @@ source $my_dir/../include/env.sh
 ensure_instance_set
 
 SCRIPT_FILE=$1
-token=$(curl https://$snow_instance/sys.scripts.do -b $SNOW_COOKIE_FILE --cookie-jar $SNOW_COOKIE_FILE -sS | $SNOW_INCLUDE_DIR/_grep-sysparm_ck.sh)
+token=$(curl https://$snow_instance/sys.scripts.do -b $SNOW_COOKIE_FILE --cookie-jar $SNOW_COOKIE_FILE -sS | extract_sysparm_ck)
 if [[ -z $token ]]
 then
    echo "Cannot get security token for service-now instance $snow_instance" >&2
