@@ -268,7 +268,7 @@ Delete record(s).
 
 Example:
 ```console
-you@machine:~$ snow r search incident -q short_descriptionSTARTSWITHTest | snow r delete incident
+you@machine:~$ snow r search incident -q short_descriptionSTARTSWITHTest --sys-id | snow r delete incident
 ```
 
 ```console
