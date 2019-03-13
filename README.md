@@ -12,7 +12,7 @@ It is free, experimental, assumed to work with the London release, although it m
 Version 0.0.1
 
 Requirements:
- - curl, bash, grep, sed, etc. (=> Linux / Windows Subsytem for Linux / Cygwin / MSYS / …)
+ - curl, bash, grep, sed, etc. (=> Linux / Windows Subsystem for Linux / Cygwin / MSYS / …)
  - a running ServiceNow instance
  - an account in ServiceNow that is capable of running background scripts
 
@@ -170,7 +170,7 @@ return gr;
 }
 ```
 
-***Use with caution. You can accidentaly execute code with side effects!***
+***Use with caution. You can accidentally execute code with side effects!***
 
 ### Searching for Tables
 ```shell
