@@ -4,11 +4,13 @@ display_usage() {
     echo -e "Example:\n$0 GlideRecordUtil\n"
 } 
 
-my_dir=$(dirname $0)
-source $my_dir/../include/env.sh
+
+source $(snow -I)/env.sh
 
 x=$# check_arguments 1
 
 name=$1
 
-run_script $SNOW_JS_SYS_PREFIX/inspect.js $name | tabularize
+source $SNOW_INCLUDE_DIR/js-executor-env.sh
+
+exec_sysjs_extension inspect $name | tabularize

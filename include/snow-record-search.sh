@@ -12,11 +12,10 @@ display_usage() {
 
 
 
-# We need env variables beforehand
 my_dir=$(dirname $0)
 
 source $my_dir/../include/env.sh
-enable_autocomplete "--query --fields --limit --no-header --help"
+enable_autocomplete "--query --fields --limit --no-header --help --sys-id"
 
 
 PRINT_TABLE_HEADER=true
@@ -42,7 +41,7 @@ do
     "--no-header")
         PRINT_TABLE_HEADER=false
         ;;
-    "--sys-id")
+    "--sys-id"|"--sys-ids")
         params+=("sysparm_fields=sys_id")
         PRINT_TABLE_HEADER=false
         ;;
@@ -70,4 +69,5 @@ do
 done
 command_opts+=" --data-urlencode sysparm_exclude_reference_link=true"
 
-curl --user $snow_user:$snow_pwd -G $command_opts -H "Accept: application/xml" "https://$snow_instance/api/now/v2/table/$table_name" -sS --compressed |tr '\n' ' ' | read_answer | tabularize
+curl --user $snow_user:$snow_pwd -G $command_opts -H "Accept: application/xml" "https://$snow_instance/api/now/v2/table/$table_name" -sS --compressed \
+ | tr '\n' ' ' | read_xml_answer | tabularize

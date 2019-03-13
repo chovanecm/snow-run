@@ -159,6 +159,10 @@ case $command in
         handle_attachment "$@"
         exit $?
         ;;
+    --include-dir|-I)
+        echo $my_dir/../include
+        exit $?
+        ;;
     *)
         # is the argument a script in the js directory?
         if [[ -e $my_dir/../js/$command.js ]]
