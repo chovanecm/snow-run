@@ -35,6 +35,10 @@ function tabularize {
 
 function join_by { local IFS="$1"; shift; echo "$*"; }
 
+function decode_html {
+   sed 's/&quot;/"/g; s/&gt;/>/g'
+}
+
 function get_script {
     script_name=$1
     shift
