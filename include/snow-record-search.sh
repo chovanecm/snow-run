@@ -11,10 +11,9 @@ display_usage() {
 } 
 
 
+source $(snow -I)/env.sh
+source $SNOW_INCLUDE_DIR/xml-env.sh
 
-my_dir=$(dirname $0)
-
-source $my_dir/../include/env.sh
 enable_autocomplete "--query --fields --limit --no-header --help --sys-id"
 
 

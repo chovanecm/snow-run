@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source "$(dirname $BASH_SOURCE)/env.sh"
+source "$(snow -I)/env.sh"
+source $SNOW_INCLUDE_DIR/xml-env.sh
 
 table=$1
 limit=10
