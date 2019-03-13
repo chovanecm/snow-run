@@ -50,7 +50,7 @@ function join_by {
 
 function decode_html {
     # Decode (some) special HTML characters
-   sed 's/&quot;/"/g; s/&gt;/>/g'
+   sed 's/&quot;/"/g; s/&gt;/>/g; s/&lt;/</g'
 }
 
 
