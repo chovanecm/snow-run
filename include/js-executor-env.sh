@@ -78,5 +78,5 @@ function add_help_call {
 
 
 function execute_background_script {
-    snow run -
+    snow run
 }

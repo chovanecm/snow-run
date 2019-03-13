@@ -80,7 +80,7 @@ You can run arbitrary background script stored on your computer as if you entere
 ```shell
 snow run FILE
 # or write the script directly in console:
-snow run -
+snow run
 # the - sign tells the tool to read from standard input
 ```
 

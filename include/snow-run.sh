@@ -8,6 +8,13 @@ source $my_dir/../include/env.sh
 ensure_instance_set
 
 SCRIPT_FILE=$1
+
+if ! [[ $SCRIPT_FILE ]]
+then
+   # if not specified, read from stdin
+   SCRIPT_FILE=-
+fi
+
 # get security token
 token=$(curl https://$snow_instance/sys.scripts.do -b $SNOW_COOKIE_FILE --cookie-jar $SNOW_COOKIE_FILE -sS | extract_sysparm_ck)
 if [[ -z $token ]]
