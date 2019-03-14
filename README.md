@@ -7,7 +7,7 @@ including database search and run-time object inspection.
 
 Snow-Run is extensible. You can write your own extensions using ServiceNow JavaScript API that you are already familiar with.
 
-It is free, experimental, assumed to work with the London release, although it may work with other releases as well, and in no way affiliated with ServiceNow Inc.
+It is free, experimental, assumed to work with the London release, although it may work with other releases as well, and is in no way affiliated with ServiceNow Inc.
 
 Version 0.0.1
 
