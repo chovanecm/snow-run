@@ -20,6 +20,7 @@ Requirements:
 
 - ***Never ever try running anything of this against your production instance.***
 - ***Never ever allow anyone to steal your cookies (see below).***
+- ***Exit the shell after you finish your work. Your credentials are stored in environment variables when you work. (That's bad, I know.) ***
 - The tool has been written to accommodate the author's current needs; it may not correctly detect some error states, and in general, mostly expects "happy-case" scenarios.
 
 YOU HAVE BEEN WARNED!
