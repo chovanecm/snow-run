@@ -1,6 +1,6 @@
 # Snow-Run
 
-Snow-Run aims to help developers and administrators to interact with their ServiceNow instance through command line.
+Snow-Run aims to help developers and administrators to interact with their ServiceNow instance through the command line.
 Initially started to provide a command-line interface for executing server-side scripts remotely from the command line or a local file,
 it now additionally offers a few useful commands to interact with ServiceNow without having to click around in web browser,
 including database search and run-time object inspection.
@@ -19,8 +19,8 @@ Requirements:
 # Warnings
 
 - ***Never ever try running anything of this against your production instance.***
-- ***Never ever allow anyone to steal your cookies (see bellow).***
-- The tool has been written to accommodate author's current needs; it may not correctly detect some error states, and in general, mostly expects "happy-case" scenarios.
+- ***Never ever allow anyone to steal your cookies (see below).***
+- The tool has been written to accommodate the author's current needs; it may not correctly detect some error states, and in general, mostly expects "happy-case" scenarios.
 
 YOU HAVE BEEN WARNED!
 
@@ -49,7 +49,7 @@ source snow-run-env.sh
 
 3. Log in:
 
-Some commands require you to log in first, depending on whether they are executed through REST interface or background script.
+Some commands require you to log in first, depending on whether they are executed through the REST interface or background script.
 
 ```shell
 snow login
@@ -57,7 +57,7 @@ snow login
 
 The will create a user session and store cookies to a directory under your `$HOME`.
 
-You can display path to the directory with `snow info`:
+You can display the path to that directory with `snow info`:
 ```console
 you@machine:~$ snow info
 SNOW RUN against dev1234.service-now.com instance.
@@ -197,7 +197,7 @@ std_change_properties  Standard Change Properties
 snow table fields TABLE_NAME
 ```
 
-This will produce output of all fields on the table (including inherited fields), their labels and data type.
+This will output all fields on the table (including inherited fields), their labels and data type.
 
 Example:
 ```console
@@ -275,7 +275,7 @@ snow record delete TABLE_NAME -a|--all
 Delete record(s).
 
 - `TABLE_NAME` name of the table to delete records from
-- `SYS_IDS...` whitespace-separated list of sys ids to remove. If omitted and no other options are specified, sys_ids are read from the standard input
+- `SYS_IDS...` a whitespace-separated list of sys_ids to remove. If omitted and no other options are specified, sys_ids are read from the standard input
 - `-q|--query` encoded query to select multiple records to be deleted at once
 - `-a|--all` delete all records in that table
 
@@ -309,7 +309,7 @@ Delete them? [Y/N]: y
 snow table-create TABLE_NAME field1:field_type1 field2:field_typ2 ...
 ```
 
-Create or update ServiceNow table.
+Create or update a ServiceNow table.
 
 - `field_name` is a database field name, e.g. `u_name` 
 - `field_type` is one of: `string` `integer` `boolean` `glide_date` `glide_date_time` `currency` `price` `reference` (`reference` doesn't work properly yet)
@@ -352,7 +352,7 @@ u_birthdate  u_pet_name  sys_created_by
 
 Besides running arbitrary scripts with `snow run FILE`, which don't require any special modification, the tool also allows for writing custom extensions.
 
-Extensions are regular JavaScript files implementing certain interface and stored in the `js` subdirectory of the project.  
+Extensions are regular JavaScript files implementing a certain interface and stored in the `js` subdirectory of the project.  
 *All of the ServiceNow server-side script API, such as `GlideRecord`, `gs` etc. is available.*
 
 Each extension must declare and implement the following method:
@@ -368,7 +368,7 @@ function $exec() {
    gs.print("Hello!");
 }
 ```
-Such script can be executed in two interchangeable ways:
+Such a script can be executed in two interchangeable ways:
 ```shell
 snow exec hello
 # Or simply
@@ -395,7 +395,7 @@ Hello John Doe
 
 #### Example 3 - File `js/echo.js` Formatted Output:
 
-Any output produced by extensions is automatically formatted as table with columns identified by tabulator (`\t`).
+Any output produced by extensions is automatically formatted as a table with columns identified by tabulator (`\t`).
 Instead of producing output with TABs manually, the `$echo(/* any number of arguments */)` function can be called with any number of arguments representing columns. Unless only one argument is provided, any new-lines strings are automatically converted to spaces to prevent the resulting table from being wrapped to the next line.
 If this is not the desired behaviour, call `$echo("This is \n New line")` or `gs.print("This is \n New line")`instead.
 
