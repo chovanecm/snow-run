@@ -212,24 +212,33 @@ sys_updated_on            Updated                   glide_date_time
 ```
 
 ### Querying Records
-
 ```shell
-snow record search [-q|--query ENCODED_QUERY] [-f|--fields FIELDS] [-l|--limit NUMBER] [--no-header] TABLE_NAME
+snow record search [options] TABLE_NAME
 # snow r search works as well
 ```
 
 Perform a query on a table.
 
-- `-q|--query` limit results to those matching an encoded query (see ServiceNow)
-- `-f|--fields` comma-separated list of fields to return
-- `-l|--limit` the maximum number of records to return
+- `-q|--query ENCODED_QUERY` limit results to those matching an encoded query (see ServiceNow)
+- `-o|--order-by FIELD` return records ordered by `FIELD`; this parameter can be specified multiple times
+- `-od|--order-by-desc FIELD` return records ordered by `FIELD` in descending order; this parameter can be specified multiple times
+- `-f|--fields FIELDS` comma-separated list of fields to return
+- `-l|--limit N` the maximum number of records to return
 - `--no-header` omit column names that would normally be printed
 - `--sys-id` shortcut for `-f sys_id --no-header`
 
+Example:
+```console
+you@machine:~$ snow r search -l 2 cmdb_ci
+skip_sync  operational_status  sys_updated_on       discovery_source  first_discovered  
+
+false      1                   2010-11-25 10:31:55                                      
+false      1                   2010-11-25 10:57:20                                      
+```
 
 Example:
 ```console
-you@machine:~$ snow r search -l 2 -f name,description -q nameSTARTSWITHcmdb sys_script_include
+you@machine:~$ snow r search sys_script_include -l 2 -f name,description -q nameSTARTSWITHcmdb -o sys_created_by --order-by-desc sys_created_on
 name                         description
 CMDBDuplicateRemediatorUtil  Utility for the CMDB Duplicate Remediator
 CMDBRelationshipAjax         Returns available CMDB relationships
