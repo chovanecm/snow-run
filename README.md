@@ -209,7 +209,7 @@ caused_by                 Caused by Change          reference
 watch_list                Watch list                glide_list
 upon_reject               Upon reject               string
 sys_updated_on            Updated                   glide_date_time
-(…)
+location                  Location                  reference        cmn_(…)
 ```
 
 ### Querying Records
