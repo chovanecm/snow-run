@@ -20,10 +20,14 @@ function $exec(/*args*/) {
         return $help();
     }
 
-    var gr = new GlideRecord(tableName);
+    var gr = new GlideAggregate(tableName);
     gr.addEncodedQuery(encodedQuery);
+    gr.addAggregate("COUNT");
     gr.query();
-    $echo(gr.getRowCount());
+    if (gr.next()) {
+        $echo(gr.getAggregate("COUNT"));
+    }
+    
 }
 
 function $help() {

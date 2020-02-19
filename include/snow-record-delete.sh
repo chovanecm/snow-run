@@ -4,6 +4,7 @@ ENABLE_AUTOCOMPLETE=1
 display_usage() { 
 	echo "Delete records via REST API" 
 	echo -e "\nUsage:\nsnow r delete TABLE_NAME SYS_IDS...\n"
+    echo -e "\nUsage:\nsnow r delete TABLE_NAME -q|--query ENCODED_QUERY | -a|--all...\n"
     echo ""
     echo -e "Example:\n snow r delete incident afasdfsdaf4sd56fsd789 bdsaasydsasdf4567"
     echo "If no sys_ids are provided, they will be read from stdin, allowing e.g. snow r search incident --sys-id -l 10 | snow record delete incident"
