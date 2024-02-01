@@ -105,10 +105,13 @@ function handle_record {
         delete)
             exec $my_dir/../include/snow-record-delete.sh "$@"
             ;;
+        insert)
+            exec $my_dir/../include/snow-record-update.sh "$@"
+            ;;
         *)
             if [[ -n $SNOW_AUTOCOMPLETE ]]
             then
-                echo "search delete"
+                echo "search delete insert"
                 exit 1
             fi
             echo "Available options: $(SNOW_AUTOCOMPLETE=1 handle_table)" >&2

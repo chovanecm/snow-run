@@ -8,7 +8,7 @@ limit=10
 
 
 PRINT_TABLE_HEADER=true
-curl "https://$snow_instance/api/now/attachment" \
+curl ${CURL_OPTIONS} "https://$snow_instance/api/now/attachment" \
 --data-urlencode sysparm_query=table_name="$table" \
 --data-urlencode sysparm_limit="$limit" \
 -G  \

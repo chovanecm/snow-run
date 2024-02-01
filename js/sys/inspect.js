@@ -4,7 +4,14 @@ function $exec(expression) {
     if (typeof x === 'object' || typeof x === 'function') {
         $echo('Own keys:');
         Object.keys(x).forEach(function (key) {
-            $echo('.', key, typeof x[key]);
+            var memberType = "???";
+            try {
+                memberType = typeof x[key];
+            } catch (e) {
+
+            } finally {
+                $echo('.', key, memberType);
+            }
         });
         if (x.prototype !== undefined) {
             $echo('Prototype keys:');

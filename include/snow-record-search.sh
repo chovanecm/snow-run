@@ -87,5 +87,5 @@ do
 done
 command_opts+=" --data-urlencode sysparm_exclude_reference_link=true"
 
-curl --user $snow_user:$snow_pwd -G $command_opts -H "Accept: application/xml" "https://$snow_instance/api/now/v2/table/$table_name" -sS --compressed \
+curl ${CURL_OPTIONS} --user $snow_user:$snow_pwd -G $command_opts -H "Accept: application/xml" "https://$snow_instance/api/now/v2/table/$table_name" -sS --compressed \
  | tr '\r\n' '  ' | read_xml_answer | decode_html | tabularize

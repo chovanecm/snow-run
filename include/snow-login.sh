@@ -21,7 +21,7 @@ then
 fi;
 
 # Perform actual login by sending the login form
-curl https://${snow_instance}/login.do -sS -b "$SNOW_COOKIE_FILE" --data "sysparm_ck=$login_token&user_name=$snow_user&user_password=$snow_pwd&ni.nolog.user_password=true&ni.noecho.user_name=true&ni.noecho.user_password=true&screensize=1920x1080&sys_action=sysverb_login" --compressed --cookie-jar "$SNOW_COOKIE_FILE"
+curl ${CURL_OPTIONS} https://${snow_instance}/login.do -sS -b "$SNOW_COOKIE_FILE" --data "sysparm_ck=$login_token&user_name=$snow_user&user_password=$snow_pwd&ni.nolog.user_password=true&ni.noecho.user_name=true&ni.noecho.user_password=true&screensize=1920x1080&sys_action=sysverb_login" --compressed --cookie-jar "$SNOW_COOKIE_FILE"
 
 status=$?
 if [[ $status -ne 0 ]];

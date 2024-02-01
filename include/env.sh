@@ -27,7 +27,7 @@ function extract_sysparm_ck() {
 }
 
 function get_login_token() {
-    curl https://$snow_instance/login.do --cookie-jar $SNOW_COOKIE_FILE -sS | extract_sysparm_ck
+    curl ${CURL_OPTIONS} https://$snow_instance/login.do --cookie-jar $SNOW_COOKIE_FILE -sS | extract_sysparm_ck
 }
 
 function tabularize {
