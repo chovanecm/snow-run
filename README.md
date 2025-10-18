@@ -1,5 +1,9 @@
 # SnowRun
 
+> Important: This project is deprecated
+>
+> A newer generation, snow-run-python (written in Python for better portability), is available at https://github.com/chovanecm/snow-run-python. This repository will no longer be updated.
+
 SnowRun aims to help developers and administrators to interact with their ServiceNow instance through the command line.
 Initially started to provide a command-line interface for executing server-side scripts remotely from the command line or a local file,
 it now additionally offers a few useful commands to interact with ServiceNow without having to click around in web browser,
